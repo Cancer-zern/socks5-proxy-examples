@@ -1,0 +1,34 @@
+{
+    "log": {
+        "loglevel": "none"
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 2080,
+            "protocol": "socks",
+            "settings": {
+                "udp": true
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ],
+                "routeOnly": true
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "shadowsocks",
+			"tag": "proxy",
+			"server": "<ServerIpAddress>",
+			"server_port": 443,
+			"method": "2022-blake3-chacha20-poly1305",
+			"password": "<Password>"
+        }
+    ]
+}

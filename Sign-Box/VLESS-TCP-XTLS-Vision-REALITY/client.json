@@ -1,0 +1,23 @@
+{
+  "tag": "proxy",
+  "type": "vless",
+  "server": "<ServerIpAddress>",
+  "server_port": 443,
+  "uuid": "<uuid>",
+  "flow": "xtls-rprx-vision",
+  "packet_encoding": "xudp",
+  "tls": {
+    "alpn": ["h2"],
+    "enabled": true,
+    "reality": {
+      "enabled": true,
+      "public_key": "<PublicKey>",
+      "short_id": "<ShortId>"
+    },
+    "server_name": "www.microsoft.com",
+    "utls": {
+      "enabled": true,
+      "fingerprint": "chrome"
+    }
+  }
+}
