@@ -7,7 +7,9 @@
   "flow": "xtls-rprx-vision",
   "packet_encoding": "xudp",
   "tls": {
-    "alpn": ["h2"],
+    "alpn": [
+      "h2"
+    ],
     "enabled": true,
     "reality": {
       "enabled": true,
