@@ -1,57 +1,57 @@
 {
-    "log": {
-        "loglevel": "none"
-    },
-    "inbounds": [
-        {
-            "listen": "0.0.0.0",
-            "port": 2080,
-            "protocol": "socks",
-            "settings": {
-                "udp": true
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ],
-                "routeOnly": true
-            }
+  "log": {
+    "loglevel": "none"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 2080,
+      "protocol": "socks",
+      "settings": {
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "routeOnly": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "tag": "proxy",
+      "settings": {
+        "vnext": [
+          {
+            "address": "<ServerIpAddress>",
+            "port": 443,
+            "users": [
+              {
+                "id": "<uuid>",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+//        "packet_encoding": "xudp",
+        "realitySettings": {
+          "fingerprint": "chrome",
+          "serverName": "www.microsoft.com",
+          "publicKey": "<PublicKey>",
+          "spiderX": "",
+          "shortId": "<ShortId>"
         }
-    ],
-    "outbounds": [
-        {
-            "protocol": "vless",
-			"tag": "proxy",
-            "settings": {
-                "vnext": [
-                    {
-                        "address": "<ServerIpAddress>",
-                        "port": 443,
-                        "users": [
-                            {
-                                "id": "<uuid>",
-                                "encryption": "none",
-                                "flow": "xtls-rprx-vision"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "tcp",
-                "security": "reality",
-//              "packet_encoding": "xudp",
-                "realitySettings": {
-                    "fingerprint": "chrome",
-                    "serverName": "www.microsoft.com",
-                    "publicKey": "<PublicKey>",
-                    "spiderX": "",
-                    "shortId": "<ShortId>"
-                }
-            }
-        }
-    ]
+      }
+    }
+  ]
 }

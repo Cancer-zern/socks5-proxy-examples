@@ -7,36 +7,18 @@
       {
         "type": "field",
         "inboundTag": [
-          "local_proxy"
+          "server"
         ],
-        "outboundTag": "proxy"
+        "outboundTag": "client_next_srv"
       }
     ],
     "domainStrategy": "AsIs"
   },
   "inbounds": [
     {
-      "listen": "0.0.0.0",
-      "port": 2080,
-      "protocol": "socks",
-      "tag": "local_proxy",
-      "settings": {
-        "udp": true
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls",
-          "quic"
-        ],
-        "routeOnly": true
-      }
-    },
-    {
       "port": 443,
       "protocol": "vless",
-      "tag": "vless_tls",
+      "tag": "server",
       "settings": {
         "clients": [
           {
@@ -87,7 +69,7 @@
     },
     {
       "protocol": "vless",
-      "tag": "proxy",
+      "tag": "client_next_srv",
       "settings": {
         "vnext": [
           {
