@@ -25,10 +25,16 @@
     {
       "protocol": "shadowsocks",
       "tag": "proxy",
-      "server": "<ServerIpAddress>",
-      "server_port": 443,
-      "method": "2022-blake3-chacha20-poly1305",
-      "password": "<Password>"
+      "settings": {
+        "servers": [
+          {
+            "address": "<ServerIpAddress>",
+            "port": 443,
+            "method": "2022-blake3-chacha20-poly1305",
+            "password": "<Password>"
+          }
+        ]
+      }
     }
   ]
 }
