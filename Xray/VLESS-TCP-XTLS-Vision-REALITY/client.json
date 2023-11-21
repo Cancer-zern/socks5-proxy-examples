@@ -19,6 +19,23 @@
         ],
         "routeOnly": true
       }
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 2081,
+      "protocol": "http",
+      "settings": {
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "routeOnly": true
+      }
     }
   ],
   "outbounds": [
