@@ -6,6 +6,7 @@
   "uuid": "<uuid>",
   "flow": "xtls-rprx-vision",
   "packet_encoding": "xudp",
+  "network": "tcp",
   "tls": {
     "alpn": [
       "h2"
