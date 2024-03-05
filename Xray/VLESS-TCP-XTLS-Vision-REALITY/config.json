@@ -33,9 +33,7 @@
                         "minClientVer": "",
                         "maxClientVer": "",
                         "maxTimeDiff": 0,
-                        "shortIds": [
-                                ""
-                        ]
+                        "shortIds": []
                 }
       },
       "sniffing": {
