@@ -8,6 +8,16 @@
   },
   "inbounds": [
     {
+      "port": 3389,
+      "tag": "ss",
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "2022-blake3-chacha20-poly1305",
+        "password": "",
+        "network": "tcp,udp"
+      }
+    },
+    {
       "port": 443,
       "protocol": "vless",
       "tag": "vless_tls",
