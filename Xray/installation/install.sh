@@ -76,4 +76,13 @@ fi
 sysctl -p
 
 
+if [ `grep -c 'https://github.com/XTLS/Xray-install/raw/main/install-release.sh' /etc/crontab` == 0 ]
+then 
+	echo '55 6    * * 7   root    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install' >> /etc/crontab
+	echo "AutoUpdate job has been added to crontab"
+else 
+    echo "AutoUpdate job - exist"
+fi
+
+
 exit 0
