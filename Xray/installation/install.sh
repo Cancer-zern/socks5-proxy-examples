@@ -57,6 +57,23 @@ echo "$ssurl"
 qrencode -s 120 -t ANSIUTF8 "$ssurl"
 qrencode -s 50 -o ssqr.png "$ssurl"
 
+if [ `grep -c 'net.core.default_qdisc=fq' /etc/sysctl.conf` == 0 ]
+then 
+    echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+	echo "net.core.default_qdisc=fq - added"
+else 
+    echo "net.core.default_qdisc=fq - exist"
+fi
+
+if [ `grep -c 'net.ipv4.tcp_congestion_control=bbr' /etc/sysctl.conf` == 0 ]
+then 
+	echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+	echo "net.ipv4.tcp_congestion_control=bbr - added"
+else 
+    echo "net.ipv4.tcp_congestion_control=bbr - exist"
+fi
+
+sysctl -p
 
 
 exit 0
