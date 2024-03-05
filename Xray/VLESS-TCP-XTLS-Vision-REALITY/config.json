@@ -1,0 +1,71 @@
+{
+  "log": {
+    "loglevel": "error"
+  },
+  "routing": {
+    "rules": [],
+    "domainStrategy": "AsIs"
+  },
+  "inbounds": [
+    {
+      "port": 3389,
+      "tag": "ss",
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "2022-blake3-chacha20-poly1305",
+        "password": "",
+        "network": "tcp,udp"
+      }
+    },
+    {
+      "port": 443,
+      "protocol": "vless",
+      "tag": "vless_tls",
+      "settings": {
+        "clients": [
+          {
+            "id": "",
+            "email": "",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+                "realitySettings": {
+                        "show": false,
+                        "dest": "",
+                        "xver": 0,
+                        "serverNames": [],
+                        "privateKey": "",
+                        "minClientVer": "",
+                        "maxClientVer": "",
+                        "maxTimeDiff": 0,
+                        "shortIds": [
+                                ""
+                        ]
+                }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
+    }
+  ]
+}
