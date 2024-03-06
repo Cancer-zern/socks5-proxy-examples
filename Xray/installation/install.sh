@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Update package index and install dependencies
-sudo apt-get update
-sudo apt-get install -y jq openssl qrencode pwgen
+#sudo apt-get update
+#sudo apt-get install -y jq openssl qrencode pwgen
 
 
 # Variables using
