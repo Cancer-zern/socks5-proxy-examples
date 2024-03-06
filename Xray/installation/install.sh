@@ -5,15 +5,16 @@ sudo apt-get update
 sudo apt-get install -y jq openssl qrencode pwgen
 
 
-# Extract the desired variables using jq
-name=UK
+# Variables using
+name=$(read -p "Enter the ServerName: " name; [ -z "$name" ] && name="vless+tls+h2+reality" && echo $name || echo $name)
 email=user1@myserver
-port=443
-ssport=3389
-sni=microsoft.com
+port=$(read -p "Enter vless port [default 443]: " port; [ -z "$port" ] && port="443" && echo $port || echo $port)
+ssport=$(read -p "Enter ss port [default 3389]: " ssport; [ -z "$ssport" ] && ssport="3389" && echo $ssport || echo $ssport)
 
+# Xray installer
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
 
+# Default config file
 json=$(curl -s https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/config.json)
 
 keys=$(xray x25519)
