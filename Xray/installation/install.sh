@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Update package index and install dependencies
-#sudo apt-get update
-#sudo apt-get install -y jq openssl qrencode pwgen
+sudo apt-get update
+sudo apt-get install -y jq openssl qrencode pwgen
 
 
 # Variables using
@@ -10,6 +10,7 @@ name=$(read -p "Enter the ServerName: " name; [ -z "$name" ] && name="vless+tls+
 email=user1@myserver
 port=$(read -p "Enter vless port [default 443]: " port; [ -z "$port" ] && port="443" && echo $port || echo $port)
 ssport=$(read -p "Enter ss port [default 3389]: " ssport; [ -z "$ssport" ] && ssport="3389" && echo $ssport || echo $ssport)
+sni=microsoft.com
 
 # Xray installer
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
