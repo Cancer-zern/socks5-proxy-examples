@@ -50,15 +50,24 @@ newJson=$(echo "$json" | jq \
 echo "$newJson" | sudo tee /usr/local/etc/xray/config.json >/dev/null
 sudo systemctl restart xray
 
+echo ""
+echo "VLESS"
+echo ""
 echo "$url"
 
 qrencode -s 120 -t ANSIUTF8 "$url"
 qrencode -s 50 -o qr.png "$url"
 
+echo ""
+echo "SS"
+echo ""
 echo "$ssurl"
 qrencode -s 120 -t ANSIUTF8 "$ssurl"
 qrencode -s 50 -o ssqr.png "$ssurl"
 
+echo ""
+echo "#####Tuning the kernel parameters#####"
+echo ""
 if [ `grep -c 'net.core.default_qdisc=fq' /etc/sysctl.conf` == 0 ]
 then 
     echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
@@ -75,9 +84,11 @@ else
     echo "net.ipv4.tcp_congestion_control=bbr - exist"
 fi
 
-sysctl -p
+sysctl -p >/dev/null
 
-
+echo ""
+echo "#####Adding AutoUpdate job to crontab#####"
+echo ""
 if [ `grep -c 'https://github.com/XTLS/Xray-install/raw/main/install-release.sh' /etc/crontab` == 0 ]
 then 
 	echo '55 6    * * 7   root    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install' >> /etc/crontab
