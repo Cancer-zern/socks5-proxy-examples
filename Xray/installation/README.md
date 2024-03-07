@@ -58,7 +58,7 @@ vless://***@<PublicIp>:443?security=reality&sni=microsoft.com&alpn=h2&fp=chrome&
 
 ###SS Params###
 
-ss://2022-blake3-chacha20-poly1305:***=@<PublicIp>:3389#Name
+ss://2022-blake3-chacha20-poly1305:***@<PublicIp>:3389#Name
 █████████████████████████████████████████████
 █████████████████████████████████████████████
 ████ ▄▄▄▄▄ █▀ ▄▀██ ▀█  █▀ ████▄▀██ ▄▄▄▄▄ ████
