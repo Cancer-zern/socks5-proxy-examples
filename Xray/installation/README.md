@@ -1,5 +1,5 @@
 # Functionality
-installing Xray-core and configure 2 inbound connection:
+Installing Xray-core and configure 2 inbound connections:
 - VLESS XTLS-Reality
 - Shadowsocks-2022
 
