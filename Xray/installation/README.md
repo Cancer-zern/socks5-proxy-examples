@@ -12,4 +12,9 @@ installing Xray-core and configure 2 inbound connection:
 Just need you to run this command
 ```
  bash -c "$(curl -L https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/install.sh)"
-``` 
+```
+
+# Uninstallation guide
+```
+ bash -c "$(curl -L https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/uninstall.sh)"
+```
