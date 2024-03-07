@@ -15,14 +15,14 @@ bash -c "$(curl -L https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-ex
 ```
 Logs
 ```
-Enter the ServerName [default xray]: Name
+Enter the ServerName [default xray]: YourName
 Enter vless port [default 443]:
 Enter ss port [default 3389]:
 
 
 ###VLESS Params###
 
-vless://***@<PublicIp>:443?security=reality&sni=microsoft.com&alpn=h2&fp=chrome&pbk=***&sid=***&type=tcp&flow=xtls-rprx-vision&encryption=none#Name
+vless://***@<PublicIp>:443?security=reality&sni=microsoft.com&alpn=h2&fp=chrome&pbk=***&sid=***&type=tcp&flow=xtls-rprx-vision&encryption=none#YourName
 █████████████████████████████████████████████████████████████████
 █████████████████████████████████████████████████████████████████
 ████ ▄▄▄▄▄ █▀██▀ ██▄▄▀ ▀ ▄ ▀▀ ▄▀█▄▀▄▀▀▄▄ ▀  ██▀ █▄▄ ██ ▄▄▄▄▄ ████
@@ -59,7 +59,7 @@ vless://***@<PublicIp>:443?security=reality&sni=microsoft.com&alpn=h2&fp=chrome&
 
 ###SS Params###
 
-ss://2022-blake3-chacha20-poly1305:***@<PublicIp>:3389#Name
+ss://2022-blake3-chacha20-poly1305:***@<PublicIp>:3389#YourName
 █████████████████████████████████████████████
 █████████████████████████████████████████████
 ████ ▄▄▄▄▄ █▀ ▄▀██ ▀█  █▀ ████▄▀██ ▄▄▄▄▄ ████
