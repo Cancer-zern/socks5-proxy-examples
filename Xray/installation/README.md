@@ -15,7 +15,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-ex
 ```
 Logs
 ```
-Enter the ServerName [default vless-xtls-reality]: Name
+Enter the ServerName [default xray]: Name
 Enter vless port [default 443]:
 Enter ss port [default 3389]:
 

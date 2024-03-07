@@ -6,7 +6,7 @@ sudo apt-get install -y jq openssl qrencode pwgen
 
 
 # Variables using
-name=$(read -p "Enter the ServerName [default vless-xtls-reality]: " name; [ -z "$name" ] && name="vless-xtls-reality" && echo $name || echo $name)
+name=$(read -p "Enter the ServerName [default xray]: " name; [ -z "$name" ] && name="xray" && echo $name || echo $name)
 email=user1@myserver
 port=$(read -p "Enter vless port [default 443]: " port; [ -z "$port" ] && port="443" && echo $port || echo $port)
 ssport=$(read -p "Enter ss port [default 3389]: " ssport; [ -z "$ssport" ] && ssport="3389" && echo $ssport || echo $ssport)
