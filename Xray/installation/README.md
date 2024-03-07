@@ -12,8 +12,9 @@ installing Xray-core and configure 2 inbound connection:
 Just need you to run this command
 ```
 bash -c "$(curl -L https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/install.sh)"
-
-
+```
+Logs
+```
 Enter the ServerName: Name
 Enter vless port [default 443]:
 Enter ss port [default 3389]:
