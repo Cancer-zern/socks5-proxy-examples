@@ -51,7 +51,7 @@ echo "$newJson" | sudo tee /usr/local/etc/xray/config.json >/dev/null
 sudo systemctl restart xray
 
 echo ""
-echo "VLESS"
+echo "###VLESS Params###"
 echo ""
 echo "$url"
 
@@ -59,7 +59,7 @@ qrencode -s 120 -t ANSIUTF8 "$url"
 qrencode -s 50 -o qr.png "$url"
 
 echo ""
-echo "SS"
+echo "###SS Params###"
 echo ""
 echo "$ssurl"
 qrencode -s 120 -t ANSIUTF8 "$ssurl"
@@ -97,5 +97,6 @@ else
     echo "AutoUpdate job - exist"
 fi
 
+echo "DONE"
 
 exit 0
