@@ -97,6 +97,33 @@ else
     echo "AutoUpdate job - exist"
 fi
 
+echo ""
+echo "#####Adding Swap for OS#####"
+echo ""
+
+if [ `sudo swapon --show | wc -l` == 0 ]
+then 
+	sudo fallocate -l 1G /swapfile
+	sudo chmod 600 /swapfile
+	sudo mkswap /swapfile
+	sudo swapon /swapfile
+	sudo swapon --show
+	sudo cp /etc/fstab /etc/fstab.bak
+	echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+	
+	# Swap tunning
+	echo "vm.swappiness=10" >> /etc/sysctl.conf
+	echo "vm.vfs_cache_pressure=50" >> /etc/sysctl.conf
+	
+	echo "Swap has been added for OS"
+else 
+    echo "Swap is exist"
+fi
+
+
+
 echo "DONE"
+
+echo "Better restart your OS"
 
 exit 0
