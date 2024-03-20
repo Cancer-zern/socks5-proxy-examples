@@ -93,7 +93,11 @@ net.ipv4.tcp_congestion_control=bbr - exist
 
 AutoUpdate job - exist
 
-DONE
+Swap space has been added for OS
+
+ALL DONE
+
+Better restart your OS
 ```
 
 # Uninstallation guide
