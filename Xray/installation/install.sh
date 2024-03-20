@@ -114,16 +114,20 @@ then
 	# Swap tunning
 	echo "vm.swappiness=10" >> /etc/sysctl.conf
 	echo "vm.vfs_cache_pressure=50" >> /etc/sysctl.conf
-	
+	echo ""
 	echo "Swap space has been added for OS"
+	echo ""
 else 
+	echo ""
     echo "Swap space is exist"
+	echo ""
 fi
 
 
-
+echo ""
 echo "ALL DONE"
-
+echo ""
 echo "Better restart your OS"
+echo ""
 
 exit 0
