@@ -93,7 +93,7 @@ net.ipv4.tcp_congestion_control=bbr - exist
 
 AutoUpdate job - exist
 
-Swap space has been added for OS
+Swap space is exist
 
 ALL DONE
 
