@@ -98,7 +98,7 @@ else
 fi
 
 echo ""
-echo "#####Adding Swap for OS#####"
+echo "#####Adding Swap sapce for OS#####"
 echo ""
 
 if [ `sudo swapon --show | wc -l` == 0 ]
@@ -115,14 +115,14 @@ then
 	echo "vm.swappiness=10" >> /etc/sysctl.conf
 	echo "vm.vfs_cache_pressure=50" >> /etc/sysctl.conf
 	
-	echo "Swap has been added for OS"
+	echo "Swap space has been added for OS"
 else 
-    echo "Swap is exist"
+    echo "Swap space is exist"
 fi
 
 
 
-echo "DONE"
+echo "ALL DONE"
 
 echo "Better restart your OS"
 
