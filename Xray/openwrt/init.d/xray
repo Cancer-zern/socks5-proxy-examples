@@ -1,0 +1,15 @@
+#!/bin/sh /etc/rc.common
+
+START=80
+SERVICE_WRITE_PID=1
+SERVICE_DAEMONIZE=1
+
+start() {
+  service_start /bin/uclient-fetch https://github.com/Cancer-zern/socks5-proxy-examples/raw/main/Xray/openwrt/xray_1.8.9-1_aarch64_cortex-a53 -O /tmp/xray; /bin/sleep 5; /bin/chmod 755 /tmp/xray
+  service_start /bin/sleep 5
+  service_start /tmp/xray --config=/etc/xray/config.json
+}
+
+stop() {
+  service_stop /tmp/xray
+}
