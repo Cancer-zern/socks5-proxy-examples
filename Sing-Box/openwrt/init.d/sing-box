@@ -20,15 +20,15 @@ START=99
 USE_PROCD=1
 
 #####  ONLY CHANGE THIS BLOCK  ######
-PROG=/usr/bin/sing-box 
+PROG=/tmp/sing-box 
 RES_DIR=/etc/sing-box/ # resource dir / working dir / the dir where you store ip/domain lists
 CONF=./config.json   # where is the config file, it can be a relative path to $RES_DIR
 #####  ONLY CHANGE THIS BLOCK  ######
 
 start_service() {
-  sleep 10 
+#  sleep 10 
   procd_open_instance
-  procd_set_param command /bin/uclient-fetch https://github.com/Cancer-zern/socks5-proxy-examples/raw/main/Sing-Box/openwrt/sing-box_1.8.10-1_arm_cortex-a9_vfpv3-d16 -O /tmp/sing-box;
+  procd_set_param command /bin/uclient-fetch https://github.com/Cancer-zern/socks5-proxy-examples/raw/main/Sing-Box/openwrt/sing-box_1.8.10-1_arm_cortex-a9_vfpv3-d16 -O /tmp/sing-box; /bin/sleep 5; /bin/chmod 755 /tmp/sing-box;
   procd_set_param command $PROG run -D $RES_DIR -c $CONF
 
   procd_set_param user root
@@ -38,13 +38,13 @@ start_service() {
   procd_set_param stderr 1
   procd_set_param respawn "${respawn_threshold:-3600}" "${respawn_timeout:-5}" "${respawn_retry:-5}"
   procd_close_instance
-  iptables -I FORWARD -o tun+ -j ACCEPT
+#  iptables -I FORWARD -o tun+ -j ACCEPT
   echo "sing-box is started!"
 }
 
 stop_service() {
   service_stop $PROG
-  iptables -D FORWARD -o tun+ -j ACCEPT
+#  iptables -D FORWARD -o tun+ -j ACCEPT
   echo "sing-box is stopped!"
 }
 
