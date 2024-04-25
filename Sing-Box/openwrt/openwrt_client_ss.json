@@ -1,0 +1,30 @@
+{
+  "log": {
+    "level": "warn"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun1",
+      "inet4_address": "172.19.0.1/30",
+      "auto_route": false,
+      "strict_route": false,
+      "sniff": true,
+      "sniff_override_destination": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "shadowsocks",
+      "tag": "ss-out",
+      "server": "<ServerIpAddress>",
+      "server_port": 443,
+      "method": "2022-blake3-chacha20-poly1305",
+      "password": "P@ssw0rd"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true
+  }
+}
