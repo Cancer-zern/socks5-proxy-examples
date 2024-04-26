@@ -23,12 +23,13 @@ USE_PROCD=1
 PROG=/tmp/sing-box 
 RES_DIR=/etc/sing-box/ # resource dir / working dir / the dir where you store ip/domain lists
 CONF=./config.json   # where is the config file, it can be a relative path to $RES_DIR
+URL=https://github.com/Cancer-zern/socks5-proxy-examples/raw/main/Sing-Box/openwrt/sing-box_1.8.10-1_arm_cortex-a9_vfpv3-d16
 #####  ONLY CHANGE THIS BLOCK  ######
 
 start_service() {
 #  sleep 10
   procd_open_instance
-  service_start /bin/uclient-fetch https://github.com/Cancer-zern/socks5-proxy-examples/raw/main/Sing-Box/openwrt/sing-box_1.8.10-1_arm_cortex-a9_vfpv3-d16 -O /tmp/sing-box > /dev/null 2>&1; /bin/chmod 755 /tmp/sing-box;
+  service_start /bin/uclient-fetch $URL -O $PROG > /dev/null 2>&1; /bin/chmod 755 $PROG;
   procd_set_param command $PROG run -D $RES_DIR -c $CONF
   
   procd_set_param user root
