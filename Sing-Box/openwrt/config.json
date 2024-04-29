@@ -1,0 +1,126 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "local",
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "google",
+        "address": "https://8.8.8.8/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "direct",
+        "server": "local"
+      },
+      {
+        "outbound": "vless-out",
+        "server": "google"
+      }
+    ],
+    "final": "local",
+    "strategy": "ipv4_only",
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "0.0.0.0",
+      "listen_port": 1080,
+      "tcp_fast_open": false,
+      "sniff": true,
+      "sniff_override_destination": false,
+      "set_system_proxy": false
+    },
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun1",
+      "inet4_address": "172.19.0.1/30",
+      "auto_route": false,
+      "strict_route": false,
+      "sniff": true,
+      "mtu": 1500,
+      "sniff_override_destination": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "vless-out",
+      "server": "<ServerIpAddress>",
+      "server_port": 443,
+      "uuid": "<Uuid>",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "network": "tcp",
+      "tls": {
+        "alpn": [
+          "h2"
+        ],
+        "enabled": true,
+        "reality": {
+          "enabled": true,
+          "public_key": "<PublicKey>",
+          "short_id": "<ShortId>"
+        },
+        "server_name": "www.microsoft.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "bypass",
+      "type": "direct"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    },
+    {
+      "tag": "dns-out",
+      "type": "dns"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "rules": [
+      {
+        "outbound": "dns-out",
+        "protocol": "dns"
+      },
+      {
+        "port": 53,
+        "network": "tcp",
+        "outbound": "block"
+      },
+      {
+        "port": 53,
+        "network": "udp",
+        "outbound": "block"
+      }
+    ],
+    "final": "vless-out"
+  }
+}
