@@ -36,6 +36,7 @@
     "disable_expire": false,
     "independent_cache": true
   },
+
   "inbounds": [
     {
       "type": "mixed",
@@ -51,7 +52,7 @@
       "type": "tun",
       "tag": "tun-in",
       "interface_name": "tun1",
-      "inet4_address": "172.19.0.1/30",
+      "inet4_address": "172.20.0.1/30",
       "auto_route": false,
       "strict_route": false,
       "sniff": true,
