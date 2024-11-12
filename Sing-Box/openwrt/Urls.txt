@@ -1,0 +1,4 @@
+https://downloads.openwrt.org/releases/23.05.4/packages/aarch64_cortex-a53/packages/
+https://downloads.openwrt.org/releases/23.05.4/packages/arm_cortex-a9_vfpv3-d16/packages/
+https://downloads.openwrt.org/snapshots/packages/arm_cortex-a9_vfpv3-d16/packages/
+https://downloads.openwrt.org/snapshots/packages/aarch64_cortex-a53/packages/
