@@ -17,3 +17,6 @@ sudo systemctl daemon-reload
 
 # Remove logs
 sudo rm -rf /var/log/xray
+
+# Remove job in cron
+sed -i '/Xray/d' /etc/crontab
