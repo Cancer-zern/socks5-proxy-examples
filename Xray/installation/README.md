@@ -18,7 +18,7 @@ Logs
 Enter the ServerName [default xray]: YourName
 Enter vless port [default 443]:
 Enter ss port [default 3389]:
-
+Enter SNI [default microsoft.com]:
 
 ###VLESS Params###
 
