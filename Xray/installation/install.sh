@@ -2,7 +2,7 @@
 
 # Update package index and install dependencies
 sudo apt-get update
-sudo apt-get install -y jq openssl qrencode pwgen
+sudo apt-get install -y jq openssl qrencode pwgen fail2ban
 
 
 # Variables using
