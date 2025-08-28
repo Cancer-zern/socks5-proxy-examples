@@ -90,6 +90,19 @@ netsh advfirewall firewall add rule name="Xray-Out-Ss" dir=out action=allow prog
 netsh advfirewall firewall add rule name="Xray-Out-Ss" dir=out action=allow program="$XrayFolder\xray.exe" enable=yes protocol=UDP localport=$ssport | Out-Null
 
 
+echo "# ScheduledTask"
+Stop-ScheduledTask -TaskName "Xray-Core" -ErrorAction SilentlyContinue
+Unregister-ScheduledTask -TaskName "Xray-Core" -Confirm:$false -ErrorAction SilentlyContinue
+$taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File $XrayFolder\xray_no_window.ps1" -WorkingDirectory $XrayFolder
+$taskTrigger1 = New-ScheduledTaskTrigger -AtStartup
+$taskTrigger2 = New-ScheduledTaskTrigger -Daily -At "12:00 AM"
+$taskTrigger3 = New-ScheduledTaskTrigger -Once -At "12:00 AM" -RepetitionInterval (New-TimeSpan -Hour 1) -RepetitionDuration (New-TimeSpan -Day 1)
+$taskTrigger2.Repetition = $taskTrigger3.Repetition
+$principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount
+Register-ScheduledTask -TaskName "Xray-Core" -Action $taskAction -Trigger $taskTrigger1,$taskTrigger2 -Principal $principal | Out-Null
+Start-ScheduledTask -TaskName "Xray-Core"
+
+
 # Params for Export
 $url="vless://"+$uuid+"@"+$serverIp+":"+$port+"?security=reality&sni="+$sni+"&alpn=h2&fp=chrome&pbk="+$pub+"&sid="+$shortId+"&type=tcp&flow=xtls-rprx-vision&encryption=none#"+$name
 $ssurl="ss://2022-blake3-chacha20-poly1305:"+$password+"@"+$serverIp+":"+$ssport+"#"+$name
@@ -102,16 +115,3 @@ echo ""
 echo "###SS Params###"
 echo ""
 echo $ssurl
-
-Stop-ScheduledTask -TaskName "Xray-Core" -ErrorAction SilentlyContinue
-Unregister-ScheduledTask -TaskName "Xray-Core" -Confirm:$false -ErrorAction SilentlyContinue
-$taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File $XrayFolder\xray_no_window.ps1" -WorkingDirectory $XrayFolder
-$taskTrigger1 = New-ScheduledTaskTrigger -AtStartup
-$taskTrigger2 = New-ScheduledTaskTrigger -Daily -At "12:00 AM"
-$taskTrigger3 = New-ScheduledTaskTrigger -Once -At "12:00 AM" -RepetitionInterval (New-TimeSpan -Hour 1) -RepetitionDuration (New-TimeSpan -Day 1)
-$taskTrigger2.Repetition = $taskTrigger3.Repetition
-$principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount
-Register-ScheduledTask -TaskName "Xray-Core" -Action $taskAction -Trigger $taskTrigger1,$taskTrigger2 -Principal $principal
-Start-ScheduledTask -TaskName "Xray-Core"
-
-#schtasks /Run /TN Xray-Core
