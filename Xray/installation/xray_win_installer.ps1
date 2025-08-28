@@ -77,10 +77,18 @@ Set-Content -Path "$XrayFolder\config.json" -Value $updatedJson
 
 
 echo "# Firewall"
-netsh advfirewall firewall delete rule name="Xray-In" | Out-Null
-netsh advfirewall firewall add rule name="Xray-In" dir=in action=allow program="$XrayFolder\xray.exe" enable=yes protocol=TCP localport=443 | Out-Null
-netsh advfirewall firewall delete rule name="Xray-Out" | Out-Null
-netsh advfirewall firewall add rule name="Xray-Out" dir=out action=allow program="$XrayFolder\xray.exe" enable=yes protocol=TCP localport=443 | Out-Null
+netsh advfirewall firewall delete rule name="Xray-In-Vless" | Out-Null
+netsh advfirewall firewall add rule name="Xray-In-Vless" dir=in action=allow program="$XrayFolder\xray.exe" enable=yes protocol=TCP localport=$port | Out-Null
+netsh advfirewall firewall delete rule name="Xray-Out-Vless" | Out-Null
+netsh advfirewall firewall add rule name="Xray-Out-Vless" dir=out action=allow program="$XrayFolder\xray.exe" enable=yes protocol=TCP localport=$port | Out-Null
+
+netsh advfirewall firewall delete rule name="Xray-In-Ss" | Out-Null
+netsh advfirewall firewall add rule name="Xray-In-Ss" dir=in action=allow program="$XrayFolder\xray.exe" enable=yes protocol=TCP localport=$ssport | Out-Null
+netsh advfirewall firewall add rule name="Xray-In-Ss" dir=in action=allow program="$XrayFolder\xray.exe" enable=yes protocol=UDP localport=$ssport | Out-Null
+netsh advfirewall firewall delete rule name="Xray-Out-Ss" | Out-Null
+netsh advfirewall firewall add rule name="Xray-Out-Ss" dir=out action=allow program="$XrayFolder\xray.exe" enable=yes protocol=TCP localport=$ssport | Out-Null
+netsh advfirewall firewall add rule name="Xray-Out-Ss" dir=out action=allow program="$XrayFolder\xray.exe" enable=yes protocol=UDP localport=$ssport | Out-Null
+
 
 # Params for Export
 $url="vless://"+$uuid+"@"+$serverIp+":"+$port+"?security=reality&sni="+$sni+"&alpn=h2&fp=chrome&pbk="+$pub+"&sid="+$shortId+"&type=tcp&flow=xtls-rprx-vision&encryption=none#"+$name
@@ -95,7 +103,8 @@ echo "###SS Params###"
 echo ""
 echo $ssurl
 
-
+Stop-ScheduledTask -TaskName "Xray-Core"
+Unregister-ScheduledTask -TaskName "Xray-Core" -Confirm:$false -ErrorAction SilentlyContinue
 $taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File $XrayFolder\xray_no_window.ps1" -WorkingDirectory $XrayFolder
 $taskTrigger1 = New-ScheduledTaskTrigger -AtStartup
 $taskTrigger2 = New-ScheduledTaskTrigger -Daily -At "12:00 AM"
