@@ -103,7 +103,7 @@ echo "###SS Params###"
 echo ""
 echo $ssurl
 
-Stop-ScheduledTask -TaskName "Xray-Core"
+Stop-ScheduledTask -TaskName "Xray-Core" -ErrorAction SilentlyContinue
 Unregister-ScheduledTask -TaskName "Xray-Core" -Confirm:$false -ErrorAction SilentlyContinue
 $taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File $XrayFolder\xray_no_window.ps1" -WorkingDirectory $XrayFolder
 $taskTrigger1 = New-ScheduledTaskTrigger -AtStartup
