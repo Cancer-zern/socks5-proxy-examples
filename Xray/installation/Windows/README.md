@@ -26,7 +26,7 @@ Enter SNI [default sni: (microsoft.com)]:
 
 ###VLESS Params###
 
-vless://21a042c5-4180-487b-9ee0-c54d898dc227@217.165.xx.xx:443?security=reality&sni=microsoft.com&alpn=h2&fp=chrome&pbk=jFU_sQ0_SUmQzhh8ZRhHnBh9O72YCYlLeipCYxkdhAY&sid=f95805d6f3767f55&type=tcp&flow=xtls-rprx-vision&encryption=none#Xray-core
+vless://***@<PublicIp>:443?security=reality&sni=microsoft.com&alpn=h2&fp=chrome&pbk=***&sid=***&type=tcp&flow=xtls-rprx-vision&encryption=none#YourName
 █████████████████████████████████████████████████████████████████
 █████████████████████████████████████████████████████████████████
 ██ ▄▄▄▄▄ █▄ ▀▄█▄ ▄█▀██▀█▀ ▄██▄█▄█▄██ ▄██ ▄▀▄▄█  ▀▄█▄█  █ ▄▄▄▄▄ ██
@@ -66,7 +66,7 @@ vless://21a042c5-4180-487b-9ee0-c54d898dc227@217.165.xx.xx:443?security=reality&
 
 ###SS Params###
 
-ss://2022-blake3-chacha20-poly1305:TABUAG0AQwBHAFUAbABoAEEAMABvAE8AcgA3AFcAUwA=@217.165.xx.xx:3389#Xray-core
+ss://2022-blake3-chacha20-poly1305:***@<PublicIp>:3389#YourName
 █████████████████████████████████████████████████
 █████████████████████████████████████████████████
 ██ ▄▄▄▄▄ █▄ ▀▀▀▄█▄ █▀█▀█▀█ ▀█▀█▀▀ ▄ █▀▄█ ▄▄▄▄▄ ██
