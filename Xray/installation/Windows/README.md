@@ -12,7 +12,7 @@ Installing Xray-core and configure 2 inbound connections:
 Just need you to run this command
 ```
 Run PS as Administrator
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/refs/heads/main/Xray/installation/Windows/xray_win_installer.ps1" -UseBasicParsing | Select-Object -ExpandProperty Content | Invoke-Expression
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/Windows/xray_win_installer.ps1" -UseBasicParsing | Select-Object -ExpandProperty Content | Invoke-Expression
 ```
 Logs
 ```
