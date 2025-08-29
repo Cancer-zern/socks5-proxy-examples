@@ -7,11 +7,11 @@ $opensslBasePath="C:\tmp"
 $opensslPathDest="C:\tmp\openssl"
 
 
-$name = 'Xray-core' | %{ If($Entry = Read-Host "Enter the ServerName [default name: ($_)"){$Entry} Else {$_} }
+$name = 'Xray-core' | %{ If($Entry = Read-Host "Enter the ServerName [default name: ($_)]"){$Entry} Else {$_} }
 $email="user1@myserver"
-$port = '443' | %{ If($Entry = Read-Host "Enter vless port [default port: ($_)"){$Entry} Else {$_} }
-$ssport = '3389' | %{ If($Entry = Read-Host "Enter ss port [default port: ($_)"){$Entry} Else {$_} }
-$sni = 'microsoft.com' | %{ If($Entry = Read-Host "Enter SNI [default sni: ($_)"){$Entry} Else {$_} }
+$port = '443' | %{ If($Entry = Read-Host "Enter vless port [default port: ($_)]"){$Entry} Else {$_} }
+$ssport = '3389' | %{ If($Entry = Read-Host "Enter ss port [default port: ($_)]"){$Entry} Else {$_} }
+$sni = 'microsoft.com' | %{ If($Entry = Read-Host "Enter SNI [default sni: ($_)]"){$Entry} Else {$_} }
 
 
 echo "# Install Xray"

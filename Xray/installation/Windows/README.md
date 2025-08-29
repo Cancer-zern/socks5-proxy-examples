@@ -4,7 +4,7 @@ Installing Xray-core and configure 2 inbound connections:
 - Shadowsocks-2022
 
 # Requrements
-- Windows Server 2019 and newer
+- Windows Server 2019/Windows 10 and newer
 - Firewall Open port for vless 443/tcp [default]
 - Firewall Open port for shadowsocks 3389/tcp+udp [default]
 
@@ -15,10 +15,10 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Cancer-zern/socks5-pro
 ```
 Logs
 ```
-Enter the ServerName [default name: (Xray-core):
-Enter vless port [default port: (443):
-Enter ss port [default port: (3389):
-Enter SNI [default sni: (microsoft.com):
+Enter the ServerName [default name: (Xray-core)]:
+Enter vless port [default port: (443)]:
+Enter ss port [default port: (3389)]:
+Enter SNI [default sni: (microsoft.com)]:
 # Install Xray
 # Configuration
 # Firewall
