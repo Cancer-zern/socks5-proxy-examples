@@ -101,5 +101,5 @@ ALL DONE
 
 # Uninstallation guide
 ```
-In a proccess
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/Windows/xray_win_uninstall.ps1" -UseBasicParsing | Select-Object -ExpandProperty Content | Invoke-Expression
 ```
