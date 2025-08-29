@@ -9,9 +9,8 @@ Installing Xray-core and configure 2 inbound connections:
 - Firewall Open port for shadowsocks 3389/tcp+udp [default]
 
 # Installation Guide
-Just need you to run this command
+Run PS as Administrator and then run this command
 ```
-Run PS as Administrator
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/Windows/xray_win_installer.ps1" -UseBasicParsing | Select-Object -ExpandProperty Content | Invoke-Expression
 ```
 Logs
