@@ -104,14 +104,23 @@ Start-ScheduledTask -TaskName "Xray-Core"
 
 
 # Params for Export
+Install-Module -Name QrCodes
+Import-Module QrCodes
+
 $url="vless://"+$uuid+"@"+$serverIp+":"+$port+"?security=reality&sni="+$sni+"&alpn=h2&fp=chrome&pbk="+$pub+"&sid="+$shortId+"&type=tcp&flow=xtls-rprx-vision&encryption=none#"+$name
 $ssurl="ss://2022-blake3-chacha20-poly1305:"+$password+"@"+$serverIp+":"+$ssport+"#"+$name
+
+
 
 echo ""
 echo "###VLESS Params###"
 echo ""
 echo $url
+ConvertTo-QrCode -InputObject $url | Format-QRCode
 echo ""
 echo "###SS Params###"
 echo ""
 echo $ssurl
+ConvertTo-QrCode -InputObject $ssurl | Format-QRCode
+echo ""
+echo "ALL DONE"
