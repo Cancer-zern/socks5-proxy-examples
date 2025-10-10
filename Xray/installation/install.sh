@@ -20,8 +20,10 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
 json=$(curl -s https://raw.githubusercontent.com/Cancer-zern/socks5-proxy-examples/main/Xray/installation/config.json)
 
 keys=$(xray x25519)
-pk=$(echo "$keys" | awk '/Private key:/ {print $3}')
-pub=$(echo "$keys" | awk '/Public key:/ {print $3}')
+#pk=$(echo "$keys" | awk '/Private key:/ {print $3}')
+#pub=$(echo "$keys" | awk '/Public key:/ {print $3}')
+pk=$(echo "$keys" | awk '/PrivateKey:/ {print $2}')
+pub=$(echo "$keys" | awk '/Password:/ {print $2}')
 serverIp=$(curl -s ipv4.wtfismyip.com/text)
 uuid=$(xray uuid)
 shortId=$(openssl rand -hex 8)
