@@ -57,9 +57,9 @@ function New-RandomPasswordBase64 {
 $keys=(xray.exe x25519)
 #$pk=($keys | Where-Object{$_ -Like "Private key:*"} | %{($_ -split "\s+")[2]})
 #$pub=($keys | Where-Object{$_ -Like "Public key:*"} | %{($_ -split "\s+")[2]})
-
 $pk=($keys | Where-Object{$_ -Like "PrivateKey:*"} | %{($_ -split "\s+")[1]})
 $pub=($keys | Where-Object{$_ -Like "Password:*"} | %{($_ -split "\s+")[1]})
+
 $serverIp=(Invoke-WebRequest ifconfig.me/ip).Content.Trim()
 $uuid=(xray.exe uuid)
 $shortId=$(openssl rand -hex 8)
