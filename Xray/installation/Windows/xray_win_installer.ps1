@@ -1,7 +1,7 @@
 $TmpFolder="C:\tmp\Xray-windows-64"
 $XrayFolder="C:\Xray-windows-64"
 $env:Path += ";$XrayFolder"
-$env:Path += ";C:\temp\openssl\openssl-1.1\x64\bin"
+$env:Path += ";C:\tmp\openssl\openssl-1.1\x64\bin"
 $opensslUrl='https://download.firedaemon.com/FireDaemon-OpenSSL/openssl-1.1.1w.zip'
 $opensslBasePath="C:\tmp"
 $opensslPathDest="C:\tmp\openssl"
