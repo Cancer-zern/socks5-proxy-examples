@@ -1,133 +1,86 @@
 {
   "log": {
-    "level": "warn",
-    "timestamp": true
+    "loglevel": "none"
   },
-  "dns": {
-    "servers": [
-      {
-        "tag": "local",
-        "address": "https://1.1.1.1/dns-query",
-        "detour": "direct"
-      },
-      {
-        "tag": "google",
-        "address": "https://1.1.1.1/dns-query",
-        "detour": "direct"
-      },
-      {
-        "tag": "block",
-        "address": "rcode://success"
-      }
-    ],
+  "routing": {
     "rules": [
       {
-        "outbound": "direct",
-        "server": "local"
-      },
-      {
-        "outbound": "vless-out",
-        "server": "google"
+        "type": "field",
+        "ip": [
+          "192.168.0.0/16",
+          "10.0.0.0/8",
+          "172.16.0.0/12",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outboundTag": "block"
       }
     ],
-    "final": "local",
-    "strategy": "ipv4_only",
-    "disable_cache": false,
-    "disable_expire": false,
-    "independent_cache": true
+    "domainStrategy": "AsIs"
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "0.0.0.0",
-      "listen_port": 1080,
-      "tcp_fast_open": false,
-//      "sniff": true,
-      "sniff_override_destination": false,
-      "set_system_proxy": false
+      "port": 3389,
+      "tag": "ss",
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "2022-blake3-chacha20-poly1305",
+        "password": "YOUR_PASSWORD_HERE",
+        "network": "tcp,udp"
+      }
     },
     {
-      "type": "tun",
-      "tag": "tun-in",
-      "interface_name": "tun1",
-//      "inet4_address": "172.19.0.1/30",
-      "address": ["172.19.0.1/30"],
-      "auto_route": false,
-      "strict_route": false,
-//      "sniff": true,
-      "mtu": 1500,
-      "sniff_override_destination": true
+      "port": 443,
+      "protocol": "vless",
+      "tag": "vless_tls",
+      "settings": {
+        "clients": [
+          {
+            "id": "YOUR_UUID_HERE",
+            "email": "user1@myserver",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "amazon.com:443",
+          "xver": 0,
+          "serverNames": [
+            "amazon.com",
+            "www.amazon.com"
+          ],
+          "privateKey": "YOUR_PRIVATE_KEY_HERE",
+          "minClientVer": "",
+          "maxClientVer": "",
+          "maxTimeDiff": 0,
+          "shortIds": [
+            "YOUR_SHORT_ID_HERE"
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
     }
   ],
   "outbounds": [
     {
-      "type": "vless",
-      "tag": "vless-out",
-      "server": "",
-      "server_port": 443,
-      "uuid": "",
-      "flow": "xtls-rprx-vision",
-      "packet_encoding": "xudp",
-//      "network": "tcp",
-      "network": ["tcp", "udp"],
-      "tls": {
-        "alpn": [
-          "h2"
-        ],
-        "enabled": true,
-        "reality": {
-          "enabled": true,
-          "public_key": "",
-          "short_id": ""
-        },
-        "server_name": "amazon.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      }
+      "protocol": "freedom",
+      "tag": "direct"
     },
     {
-      "tag": "direct",
-      "type": "direct"
-    },
-    {
-      "tag": "bypass",
-      "type": "direct"
+      "protocol": "blackhole",
+      "tag": "block"
     }
-//    {
-//      "tag": "block",
-//      "type": "block"
-//    },
-//    {
-//      "tag": "dns-out",
-//      "type": "dns"
-//    }
-  ],
-  "route": {
-    "auto_detect_interface": true,
-    "rules": [
-      {
-        "action": "sniff"
-      },
-      {
-        "protocol": "dns",
-                "action": "hijack-dns"
-      },
-      {
-        "port": 53,
-        "network": "tcp",
- //       "outbound": "block"
-        "action": "reject"
-      },
-      {
-        "port": 53,
-        "network": "udp",
- //       "outbound": "block"
-        "action": "reject"
-      }
-    ],
-    "final": "vless-out"
-  }
+  ]
 }

@@ -12,7 +12,7 @@
       },
       {
         "tag": "google",
-        "address": "https://8.8.8.8/dns-query",
+        "address": "https://1.1.1.1/dns-query",
         "detour": "direct"
       },
       {
@@ -36,15 +36,42 @@
     "disable_expire": false,
     "independent_cache": true
   },
-
   "inbounds": [
+    {
+      "type": "vless",
+      "tag": "vless-in",
+      "listen": "::",
+      "listen_port": 8443,
+      "users": [
+        {
+          "name": "user1",
+          "uuid": "YOUR_UUID_HERE",
+          "flow": "xtls-rprx-vision"
+        }     
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "amazon.com",
+        "reality": {
+          "enabled": true,
+          "handshake": {
+            "server": "amazon.com",
+            "server_port": 443
+            },
+            "private_key": "YOUR_PRIVATE_KEY_HERE",
+            "short_id": [
+              "YOUR_SHORT_ID_HERE"
+            ],
+            "max_time_difference": "500m"
+        }
+      }
+    },
     {
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "0.0.0.0",
       "listen_port": 1080,
       "tcp_fast_open": false,
-//      "sniff": true,
       "sniff_override_destination": false,
       "set_system_proxy": false
     },
@@ -52,8 +79,7 @@
       "type": "tun",
       "tag": "tun-in",
       "interface_name": "tun1",
-//      "inet4_address": "172.20.0.1/30",
-      "address": ["172.20.0.1/30"],
+      "address": ["172.19.0.1/30"],
       "auto_route": false,
       "strict_route": false,
 //      "sniff": true,
@@ -65,12 +91,12 @@
     {
       "type": "vless",
       "tag": "vless-out",
-      "server": "<ServerIpAddress>",
+      "server": "YOUR-SERVER-IP",
       "server_port": 443,
-      "uuid": "<Uuid>",
+      "uuid": "YOUR_UUID_HERE",
       "flow": "xtls-rprx-vision",
       "packet_encoding": "xudp",
-      "network": "tcp",
+//      "network": ["tcp", "udp"],
       "tls": {
         "alpn": [
           "h2"
@@ -78,10 +104,10 @@
         "enabled": true,
         "reality": {
           "enabled": true,
-          "public_key": "<PublicKey>",
-          "short_id": "<ShortId>"
+          "public_key": "YOUR_PUBLIC_KEY_HERE",
+          "short_id": "YOUR_SHORT_ID_HERE"
         },
-        "server_name": "www.microsoft.com",
+        "server_name": "amazon.com",
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
@@ -96,14 +122,6 @@
       "tag": "bypass",
       "type": "direct"
     }
-//    {
-//      "tag": "block",
-//      "type": "block"
-//    },
-//    {
-//      "tag": "dns-out",
-//      "type": "dns"
-//    }
   ],
   "route": {
     "auto_detect_interface": true,
@@ -113,19 +131,21 @@
       },
       {
         "protocol": "dns",
-		"action": "hijack-dns"
+        "action": "hijack-dns"
       },
       {
         "port": 53,
         "network": "tcp",
- //       "outbound": "block"
         "action": "reject"
       },
       {
         "port": 53,
         "network": "udp",
- //       "outbound": "block"
         "action": "reject"
+      },
+      {
+        "inbound": "vless-in",
+        "outbound": "direct"
       }
     ],
     "final": "vless-out"
