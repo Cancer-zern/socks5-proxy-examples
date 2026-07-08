@@ -10,7 +10,7 @@ name=$(read -p "Enter the ServerName [default xray]: " name; [ -z "$name" ] && n
 email=user1@myserver
 port=$(read -p "Enter vless port [default 443]: " port; [ -z "$port" ] && port="443" && echo $port || echo $port)
 ssport=$(read -p "Enter ss port [default 3389]: " ssport; [ -z "$ssport" ] && ssport="3389" && echo $ssport || echo $ssport)
-sni=$(read -p "Enter SNI [default microsoft.com]: " sni; [ -z "$sni" ] && sni="microsoft.com" && echo $sni || echo $sni)
+sni=$(read -p "Enter SNI [default amazon.com]: " sni; [ -z "$sni" ] && sni="amazon.com" && echo $sni || echo $sni)
 #sni=microsoft.com
 
 # Xray installer
